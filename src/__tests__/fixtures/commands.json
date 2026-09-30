@@ -1,0 +1,404 @@
+[
+  {
+    "name": "status",
+    "args": [
+      "status"
+    ],
+    "responses": [
+      {
+        "ok": true,
+        "team_id": "T123",
+        "team": "Example",
+        "user_id": "U123",
+        "user": "reader",
+        "url": "https://example.slack.com/"
+      }
+    ],
+    "expected": {
+      "status": {
+        "team_id": "T123",
+        "team": "Example",
+        "user_id": "U123",
+        "user": "reader",
+        "url": "https://example.slack.com/"
+      },
+      "truncation": [],
+      "help": [
+        "Run `slack-axi channel list`",
+        "Run `slack-axi search <query>`"
+      ]
+    },
+    "exitCode": 0
+  },
+  {
+    "name": "channels",
+    "args": [
+      "channel",
+      "list"
+    ],
+    "responses": [
+      {
+        "ok": true,
+        "channels": [
+          {
+            "id": "C123",
+            "name": "general",
+            "is_private": false,
+            "is_im": false,
+            "is_mpim": false,
+            "topic": {
+              "value": "Topic"
+            },
+            "purpose": {
+              "value": ""
+            }
+          }
+        ]
+      }
+    ],
+    "expected": {
+      "channels": [
+        {
+          "id": "C123",
+          "name": "general",
+          "is_private": false,
+          "num_members": null,
+          "topic": "Topic",
+          "purpose": ""
+        }
+      ],
+      "next_cursor": null,
+      "truncation": [],
+      "help": [
+        "Run `slack-axi channel history <id|name>`"
+      ]
+    },
+    "exitCode": 0
+  },
+  {
+    "name": "history",
+    "args": [
+      "channel",
+      "history",
+      "C123"
+    ],
+    "responses": [
+      {
+        "ok": true,
+        "channel": {
+          "id": "C123",
+          "name": "general",
+          "is_private": false,
+          "is_im": false,
+          "is_mpim": false
+        }
+      },
+      {
+        "ok": true,
+        "messages": [
+          {
+            "ts": "123.000001",
+            "text": "hello\n\t<@U123>",
+            "user": "U123"
+          }
+        ]
+      }
+    ],
+    "expected": {
+      "channel_id": "C123",
+      "messages": [
+        {
+          "ts": "123.000001",
+          "thread_ts": null,
+          "user": "U123",
+          "bot_id": null,
+          "text": "hello\n\t<@U123>",
+          "reply_count": null
+        }
+      ],
+      "next_cursor": null,
+      "truncation": [],
+      "help": [
+        "Run `slack-axi thread replies <id|name> <ts>`"
+      ]
+    },
+    "exitCode": 0
+  },
+  {
+    "name": "replies",
+    "args": [
+      "thread",
+      "replies",
+      "C123",
+      "123.000001"
+    ],
+    "responses": [
+      {
+        "ok": true,
+        "channel": {
+          "id": "C123",
+          "name": "general",
+          "is_private": false,
+          "is_im": false,
+          "is_mpim": false
+        }
+      },
+      {
+        "ok": true,
+        "messages": [
+          {
+            "ts": "123.000001",
+            "text": "hello\n\t<@U123>",
+            "user": "U123",
+            "thread_ts": "123.000001",
+            "reply_count": 0
+          }
+        ]
+      }
+    ],
+    "expected": {
+      "channel_id": "C123",
+      "messages": [
+        {
+          "ts": "123.000001",
+          "thread_ts": "123.000001",
+          "user": "U123",
+          "bot_id": null,
+          "text": "hello\n\t<@U123>",
+          "reply_count": 0
+        }
+      ],
+      "next_cursor": null,
+      "truncation": [],
+      "help": [
+        "Run `slack-axi thread replies <id|name> <ts>`"
+      ]
+    },
+    "exitCode": 0
+  },
+  {
+    "name": "search",
+    "args": [
+      "search",
+      "hello"
+    ],
+    "responses": [
+      {
+        "ok": true,
+        "messages": {
+          "matches": [
+            {
+              "ts": "123.000001",
+              "text": "hello\n\t<@U123>",
+              "user": "U123",
+              "type": "message",
+              "channel": {
+                "id": "C123",
+                "name": "general",
+                "is_private": false,
+                "is_im": false,
+                "is_mpim": false
+              },
+              "permalink": "https://example.slack.com/archives/C123/p123000001"
+            }
+          ],
+          "paging": {
+            "page": 1,
+            "pages": 1
+          }
+        }
+      }
+    ],
+    "expected": {
+      "matches": [
+        {
+          "ts": "123.000001",
+          "thread_ts": null,
+          "user": "U123",
+          "bot_id": null,
+          "text": "hello\n\t<@U123>",
+          "reply_count": null,
+          "channel_id": "C123",
+          "channel_name": "general",
+          "permalink": "https://example.slack.com/archives/C123/p123000001"
+        }
+      ],
+      "page": 1,
+      "pages": 1,
+      "next_page": null,
+      "filtered": 0,
+      "truncation": [],
+      "help": [
+        "Run `slack-axi channel history <id|name>`"
+      ]
+    },
+    "exitCode": 0
+  },
+  {
+    "name": "user",
+    "args": [
+      "user",
+      "U123"
+    ],
+    "responses": [
+      {
+        "ok": true,
+        "user": {
+          "id": "U123",
+          "name": "reader",
+          "real_name": "Reader",
+          "profile": {
+            "display_name": "R",
+            "title": "Engineer"
+          },
+          "tz": "UTC",
+          "deleted": false,
+          "is_bot": false
+        }
+      }
+    ],
+    "expected": {
+      "user": {
+        "id": "U123",
+        "name": "reader",
+        "real_name": "Reader",
+        "display_name": "R",
+        "title": "Engineer",
+        "tz": "UTC",
+        "deleted": false,
+        "is_bot": false
+      },
+      "truncation": [],
+      "help": [
+        "Run `slack-axi search <query>`"
+      ]
+    },
+    "exitCode": 0
+  },
+  {
+    "name": "empty",
+    "args": [
+      "channel",
+      "list"
+    ],
+    "responses": [
+      {
+        "ok": true,
+        "channels": []
+      }
+    ],
+    "expected": {
+      "channels": [],
+      "next_cursor": null,
+      "truncation": [],
+      "empty": "0 results on this page after filtering; continuation may still be available.",
+      "help": [
+        "Run `slack-axi channel history <id|name>`"
+      ]
+    },
+    "exitCode": 0
+  },
+  {
+    "name": "error",
+    "args": [
+      "nonsense"
+    ],
+    "responses": [],
+    "expected": {
+      "error": "Unknown command.",
+      "code": "usage",
+      "retry_after": null,
+      "help": [
+        "Run `slack-axi --help`"
+      ]
+    },
+    "exitCode": 2
+  },
+  {
+    "name": "search_bot",
+    "args": [
+      "search",
+      "deploy",
+      "--include-bots",
+      "--sort",
+      "timestamp"
+    ],
+    "responses": [
+      {
+        "ok": true,
+        "messages": {
+          "matches": [
+            {
+              "ts": "1700000001.000001",
+              "text": "",
+              "bot_id": "B123",
+              "subtype": "bot_message",
+              "type": "message",
+              "attachments": [
+                {
+                  "fallback": "Deploy api v2: rolling out",
+                  "pretext": "Deploy started",
+                  "title": "api v2",
+                  "text": "rolling out",
+                  "fields": [
+                    {
+                      "title": "env",
+                      "value": "prod",
+                      "short": true
+                    }
+                  ]
+                }
+              ],
+              "channel": {
+                "id": "C123",
+                "name": "deploys",
+                "is_private": false,
+                "is_im": false,
+                "is_mpim": false
+              },
+              "permalink": "https://example.slack.com/archives/C123/p1700000001000001"
+            }
+          ],
+          "paging": {
+            "page": 1,
+            "pages": 2
+          }
+        }
+      },
+      {
+        "ok": true,
+        "messages": {
+          "matches": [],
+          "paging": {
+            "page": 2,
+            "pages": 2
+          }
+        }
+      }
+    ],
+    "expected": {
+      "matches": [
+        {
+          "ts": "1700000001.000001",
+          "thread_ts": null,
+          "user": null,
+          "bot_id": "B123",
+          "text": "Deploy started\napi v2\nrolling out\nenv: prod",
+          "reply_count": null,
+          "channel_id": "C123",
+          "channel_name": "deploys",
+          "permalink": "https://example.slack.com/archives/C123/p1700000001000001"
+        }
+      ],
+      "page": 1,
+      "pages": 2,
+      "next_page": null,
+      "filtered": 0,
+      "truncation": [],
+      "help": [
+        "Run `slack-axi channel history <id|name>`"
+      ]
+    },
+    "exitCode": 0
+  }
+]

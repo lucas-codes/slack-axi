@@ -1,0 +1,36 @@
+{
+  "name": "slack-axi",
+  "version": "0.1.0",
+  "description": "Owned local read-only Slack CLI",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "slack-axi": "bin/slack-axi"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "skills/slack-axi",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "volta": {
+    "node": "24.21.0"
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --target=node --outdir=dist && chmod +x bin/slack-axi",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"src/__tests__/*.test.ts\"",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "@toon-format/toon": "4.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.5",
+    "typescript": "5.9.3"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,8 @@
+matches[1]{ts,thread_ts,user,bot_id,text,reply_count,channel_id,channel_name,permalink}:
+  "1700000001.000001",null,null,B123,"Deploy started\napi v2\nrolling out\nenv: prod",null,C123,deploys,"https://example.slack.com/archives/C123/p1700000001000001"
+page: 1
+pages: 2
+next_page: null
+filtered: 0
+truncation: []
+help[1]: Run `slack-axi channel history <id|name>`

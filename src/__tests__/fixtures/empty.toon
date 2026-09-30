@@ -1,0 +1,5 @@
+channels: []
+next_cursor: null
+truncation: []
+empty: 0 results on this page after filtering; continuation may still be available.
+help[1]: Run `slack-axi channel history <id|name>`

@@ -1,0 +1,8 @@
+status:
+  team_id: T123
+  team: Example
+  user_id: U123
+  user: reader
+  url: "https://example.slack.com/"
+truncation: []
+help[2]: Run `slack-axi channel list`,Run `slack-axi search <query>`
