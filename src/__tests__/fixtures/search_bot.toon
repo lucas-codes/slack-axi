@@ -1,0 +1,7 @@
+matches[1]{ts,thread_ts,user,bot_id,text,reply_count,channel_id,channel_name,permalink}:
+  "1700000001.000001",-,-,B123,"Deploy started\napi v2\nrolling out\nenv: prod",-,C123,deploys,"https://example.slack.com/archives/C123/p1700000001000001"
+page: 1
+pages: 2
+next_page: -
+filtered: 0
+truncation[0]:

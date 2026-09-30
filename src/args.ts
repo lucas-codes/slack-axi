@@ -1,11 +1,11 @@
 import { Failure } from './errors.ts';
 
 export type Command = 'status' | 'list' | 'history' | 'replies' | 'search' | 'user';
-export type Args = { command: Command; positionals: string[]; json: boolean; help: boolean; version: boolean; limit: number; includePrivate: boolean; includeDms: boolean; cursor?: string; page: number };
+export type Args = { command: Command; positionals: string[]; json: boolean; help: boolean; version: boolean; limit: number; includePrivate: boolean; includeDms: boolean; cursor?: string; page: number; sort: 'score' | 'timestamp'; sortDir: 'asc' | 'desc'; includeBots: boolean };
 const flags: Record<Command, string[]> = {
   status: [], user: [], list: ['limit', 'include-private', 'cursor'],
   history: ['limit', 'include-private', 'cursor'], replies: ['limit', 'include-private', 'cursor'],
-  search: ['limit', 'include-private', 'page'],
+  search: ['limit', 'include-private', 'page', 'sort', 'sort-dir', 'include-bots'],
 };
 const arities: Record<Command, number> = { status: 0, list: 0, history: 1, replies: 2, search: 1, user: 1 };
 export const CHANNEL_ID = /^[CGD][A-Z0-9]+$/;
@@ -35,9 +35,9 @@ export function parse(argv: string[]): Args {
     if (!literal && arg.startsWith('-')) {
       const normalized = arg === '-h' ? '--help' : arg === '-v' ? '--version' : arg;
       const [name, ...parts] = normalized.slice(2).split('=');
-      if (!normalized.startsWith('--') || !name || !['help','version','json','include-private','include-dms','limit','cursor','page'].includes(name)) usage('Unknown flag.');
+      if (!normalized.startsWith('--') || !name || !['help','version','json','include-private','include-dms','include-bots','limit','cursor','page','sort','sort-dir'].includes(name)) usage('Unknown flag.');
       if (values.has(name)) usage('Duplicate flag.');
-      if (['help','version','json','include-private','include-dms'].includes(name)) {
+      if (['help','version','json','include-private','include-dms','include-bots'].includes(name)) {
         if (parts.length) usage('Boolean flags do not accept values.');
         values.set(name, true);
       } else {
@@ -78,8 +78,14 @@ export function parse(argv: string[]): Args {
     if (!Number.isSafeInteger(n) || n < 1 || n > 100) usage('Expected an integer from 1 to 100.');
     return n;
   }
+  function choice<T extends string>(name: string, allowed: readonly T[], fallback: T): T {
+    const raw = values.get(name);
+    if (raw === undefined) return fallback;
+    if (typeof raw !== 'string' || !(allowed as readonly string[]).includes(raw)) usage('Expected one of: ' + allowed.join(', ') + '.');
+    return raw as T;
+  }
   const cursor = values.get('cursor');
-  return { command, positionals: words, json: values.has('json'), help, version, limit: integer('limit',20), includePrivate: values.has('include-private'), includeDms: values.has('include-dms'), page: integer('page',1), ...(typeof cursor === 'string' ? {cursor:cursorValue(cursor)} : {}) };
+  return { command, positionals: words, json: values.has('json'), help, version, limit: integer('limit',20), includePrivate: values.has('include-private'), includeDms: values.has('include-dms'), page: integer('page',1), sort: choice('sort',['score','timestamp'],'score'), sortDir: choice('sort-dir',['asc','desc'],'desc'), includeBots: values.has('include-bots'), ...(typeof cursor === 'string' ? {cursor:cursorValue(cursor)} : {}) };
 }
 
 export function wantsJson(argv: string[]): boolean {
