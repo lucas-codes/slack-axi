@@ -13,6 +13,7 @@ beforeEach(() => {
   globalThis.fetch = async () => { throw new Error('network denied by test'); };
 });
 function mock(responses: unknown[]) {
+  calls = [];
   globalThis.fetch = async (input, init) => {
     const url = new URL(String(input));
     assert.equal(url.origin, 'https://slack.com');
