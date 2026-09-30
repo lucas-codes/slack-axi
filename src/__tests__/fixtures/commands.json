@@ -22,7 +22,11 @@
         "user": "reader",
         "url": "https://example.slack.com/"
       },
-      "truncation": []
+      "truncation": [],
+      "help": [
+        "Run `slack-axi channel list`",
+        "Run `slack-axi search <query>`"
+      ]
     },
     "exitCode": 0
   },
@@ -64,7 +68,10 @@
         }
       ],
       "next_cursor": null,
-      "truncation": []
+      "truncation": [],
+      "help": [
+        "Run `slack-axi channel history <id|name>`"
+      ]
     },
     "exitCode": 0
   },
@@ -110,7 +117,10 @@
         }
       ],
       "next_cursor": null,
-      "truncation": []
+      "truncation": [],
+      "help": [
+        "Run `slack-axi thread replies <id|name> <ts>`"
+      ]
     },
     "exitCode": 0
   },
@@ -159,7 +169,10 @@
         }
       ],
       "next_cursor": null,
-      "truncation": []
+      "truncation": [],
+      "help": [
+        "Run `slack-axi thread replies <id|name> <ts>`"
+      ]
     },
     "exitCode": 0
   },
@@ -214,7 +227,10 @@
       "pages": 1,
       "next_page": null,
       "filtered": 0,
-      "truncation": []
+      "truncation": [],
+      "help": [
+        "Run `slack-axi channel history <id|name>`"
+      ]
     },
     "exitCode": 0
   },
@@ -252,7 +268,10 @@
         "deleted": false,
         "is_bot": false
       },
-      "truncation": []
+      "truncation": [],
+      "help": [
+        "Run `slack-axi search <query>`"
+      ]
     },
     "exitCode": 0
   },
@@ -271,7 +290,11 @@
     "expected": {
       "channels": [],
       "next_cursor": null,
-      "truncation": []
+      "truncation": [],
+      "empty": "0 results on this page after filtering; continuation may still be available.",
+      "help": [
+        "Run `slack-axi channel history <id|name>`"
+      ]
     },
     "exitCode": 0
   },
@@ -284,7 +307,10 @@
     "expected": {
       "error": "Unknown command.",
       "code": "usage",
-      "retry_after": null
+      "retry_after": null,
+      "help": [
+        "Run `slack-axi --help`"
+      ]
     },
     "exitCode": 2
   },
@@ -368,7 +394,10 @@
       "pages": 2,
       "next_page": null,
       "filtered": 0,
-      "truncation": []
+      "truncation": [],
+      "help": [
+        "Run `slack-axi channel history <id|name>`"
+      ]
     },
     "exitCode": 0
   }

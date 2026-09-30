@@ -1,4 +1,5 @@
 channels[1]{id,name,is_private,num_members,topic,purpose}:
-  C123,general,false,-,Topic,""
-next_cursor: -
-truncation[0]:
+  C123,general,false,null,Topic,""
+next_cursor: null
+truncation: []
+help[1]: Run `slack-axi channel history <id|name>`

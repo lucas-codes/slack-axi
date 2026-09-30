@@ -1,3 +1,31 @@
+import type { Args } from './args.ts';
+import type { Output } from './output.ts';
+
+export function nextSteps(args: Args, output: Output): string[] {
+  const privacy = (args.includePrivate ? ' --include-private' : '') + (args.includeDms ? ' --include-dms' : '');
+  let hints: string[];
+  switch (args.command) {
+    case 'status': hints = ['Run `slack-axi channel list`','Run `slack-axi search <query>`']; break;
+    case 'list':
+      hints = ['Run `slack-axi channel history <id|name>'+privacy+'`'];
+      if (output.next_cursor !== null) hints.push('Run `slack-axi channel list --cursor <next_cursor>'+privacy+'`');
+      break;
+    case 'history': case 'replies': {
+      const command = args.command === 'history' ? 'channel history <id|name>' : 'thread replies <id|name> <ts>';
+      hints = ['Run `slack-axi thread replies <id|name> <ts>'+privacy+'`'];
+      if (output.next_cursor !== null) hints.push('Run `slack-axi '+command+' --cursor <next_cursor>'+privacy+'`');
+      break;
+    }
+    case 'search':
+      hints = ['Run `slack-axi channel history <id|name>'+privacy+'`'];
+      if (output.next_page !== null) hints.push('Run `slack-axi search <query> --page <next_page> --sort '+args.sort+' --sort-dir '+args.sortDir+privacy+(args.includeBots ? ' --include-bots' : '')+'`');
+      break;
+    case 'user': hints = ['Run `slack-axi search <query>`']; break;
+  }
+  if (Array.isArray(output.truncation) && output.truncation.length) hints.push('Text was clipped; inspect the source in Slack. --full is not supported; safety caps always apply.');
+  return hints;
+}
+
 export const HELP = `slack-axi — owned read-only Slack CLI
 
 Usage:

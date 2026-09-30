@@ -1,5 +1,6 @@
 channel_id: C123
 messages[1]{ts,thread_ts,user,bot_id,text,reply_count}:
-  "123.000001",-,U123,-,"hello\n\t<@U123>",-
-next_cursor: -
-truncation[0]:
+  "123.000001",null,U123,null,"hello\n\t<@U123>",null
+next_cursor: null
+truncation: []
+help[1]: Run `slack-axi thread replies <id|name> <ts>`

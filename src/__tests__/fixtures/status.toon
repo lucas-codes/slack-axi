@@ -4,4 +4,5 @@ status:
   user_id: U123
   user: reader
   url: "https://example.slack.com/"
-truncation[0]:
+truncation: []
+help[2]: Run `slack-axi channel list`,Run `slack-axi search <query>`

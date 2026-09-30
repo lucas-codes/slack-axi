@@ -4,6 +4,7 @@ import { run } from '../index.ts';
 import { Cleaner, serialize } from '../output.ts';
 import { request, validateUrl, TIMEOUT_MS } from '../transport.ts';
 import { parse } from '../args.ts';
+import { decode } from '@toon-format/toon';
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, mkdirSync, mkdtempSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
@@ -152,5 +153,6 @@ test('launcher load failures are structured stdout without exception details',()
     assert.ok(!r.stdout.includes(token));
     const toon=spawnSync(process.execPath,['--import',deny,launcher,'--json='+token],{encoding:'utf8',env:{SLACK_AXI_TOKEN:token}});
     assert.equal(toon.status,1);assert.match(toon.stdout,/^error:/);assert.equal(toon.stderr,'');
+    assert.deepEqual(decode(toon.stdout,{strict:true}),JSON.parse(r.stdout));
   } finally { rmSync(dir,{recursive:true}); }
 });

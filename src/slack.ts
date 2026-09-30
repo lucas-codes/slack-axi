@@ -1,6 +1,7 @@
 import { channelInput, CHANNEL_ID, USER_ID, TS, cursorValue } from './args.ts';
 import type { Args } from './args.ts';
 import { Failure } from './errors.ts';
+import { nextSteps } from './help.ts';
 import { object, request } from './transport.ts';
 import { Cleaner } from './output.ts';
 import type { Output, Row, Scalar } from './output.ts';
@@ -245,5 +246,8 @@ export async function execute(args: Args, token: string, c: Cleaner): Promise<Ou
     }
   }
   output.truncation = c.truncation;
+  const rows = output.channels ?? output.messages ?? output.matches;
+  if (Array.isArray(rows) && rows.length === 0) output.empty = '0 results on this page after filtering; continuation may still be available.';
+  output.help = nextSteps(args,output);
   return output;
 }

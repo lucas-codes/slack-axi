@@ -19,7 +19,7 @@ export async function run(argv: string[], env: { SLACK_AXI_TOKEN?: string } = pr
   } catch (error) {
     const failure = error instanceof Failure ? error : new Failure('Unexpected command failure.', 'internal');
     return {
-      stdout:serialize({error:cleaner.field(failure.message,'error',200),code:failure.code,retry_after:failure.retryAfter},json,cleaner),
+      stdout:serialize({error:cleaner.field(failure.message,'error',200),code:failure.code,retry_after:failure.retryAfter,help:['Run `slack-axi --help`']},json,cleaner),
       exitCode:failure.exitCode,
     };
   }

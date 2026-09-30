@@ -9,8 +9,8 @@ try {
   const before = literal.slice(0, literal.indexOf('--') < 0 ? literal.length : literal.indexOf('--'));
   const json = before.filter(x => x === '--json').length === 1 && !before.some(x => x.startsWith('--json='));
   const message = 'Unable to load CLI; run npm run build in the owned checkout.';
-  const error = {error:message,code:'load',retry_after:null};
-  let output = json ? JSON.stringify(error) + '\n' : 'error: ' + message + '\ncode: load\nretry_after: -\n';
+  const error = {error:message,code:'load',retry_after:null,help:['Run `npm run build` in the owned checkout.']};
+  let output = json ? JSON.stringify(error) + '\n' : 'error: ' + message + '\ncode: load\nretry_after: null\nhelp[1]: Run `npm run build` in the owned checkout.\n';
   const token = process.env.SLACK_AXI_TOKEN;
   if (token) output = output.split(token).join('[REDACTED]');
   process.stdout.write(output);

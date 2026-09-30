@@ -1,7 +1,8 @@
 matches[1]{ts,thread_ts,user,bot_id,text,reply_count,channel_id,channel_name,permalink}:
-  "123.000001",-,U123,-,"hello\n\t<@U123>",-,C123,general,"https://example.slack.com/archives/C123/p123000001"
+  "123.000001",null,U123,null,"hello\n\t<@U123>",null,C123,general,"https://example.slack.com/archives/C123/p123000001"
 page: 1
 pages: 1
-next_page: -
+next_page: null
 filtered: 0
-truncation[0]:
+truncation: []
+help[1]: Run `slack-axi channel history <id|name>`

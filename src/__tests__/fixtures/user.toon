@@ -7,4 +7,5 @@ user:
   tz: UTC
   deleted: false
   is_bot: false
-truncation[0]:
+truncation: []
+help[1]: Run `slack-axi search <query>`
