@@ -124,6 +124,16 @@ test('all error paths are safe, structured and nonzero', async () => {
     assert.equal(r.exitCode,1); assert.ok(!r.stdout.includes(TOKEN));
     assert.equal(typeof r.data.error,'string');
     assert.equal(typeof r.data.code,'string');
+    assert.equal(calls.length,1);
+  }
+  for (const json of [false,true]) {
+    mock([{ok:false,error:'a\u009b\u001b[31m'+TOKEN.slice(0,8)+'\u001b'+TOKEN.slice(8)}]);
+    const dirty=await run(['status',...(json ? ['--json'] : [])],{SLACK_AXI_TOKEN:TOKEN});
+    assert.equal(dirty.exitCode,1);
+    assert.ok(!dirty.stdout.includes(TOKEN));
+    assert.ok(!/[\u0000-\u0008\u000b-\u001f\u007f-\u009f]/.test(dirty.stdout));
+    assert.ok(!dirty.stdout.includes('\\u009b'));
+    assert.match(dirty.stdout,/REDACTED/);
   }
   globalThis.fetch=async()=>{throw new Error(TOKEN);};
   const r=await run(['status','--json'],{SLACK_AXI_TOKEN:TOKEN});

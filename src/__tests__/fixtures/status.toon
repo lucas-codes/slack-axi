@@ -1,0 +1,7 @@
+status:
+  team_id: T123
+  team: Example
+  user_id: U123
+  user: reader
+  url: "https://example.slack.com/"
+truncation[0]:

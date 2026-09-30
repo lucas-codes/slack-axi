@@ -82,7 +82,7 @@ async function resolveChannel(input: string, includePrivate: boolean, includeDms
     for (let page = 0; page < 10; page++) {
       const data = await request('conversations.list',listParams(includePrivate,includeDms,100,cursor),token);
       for (const c of collection(data,'channels')) {
-        const name = optionalString(c,'name');
+        const name = boolean(c,'is_im',true) ? optionalString(c,'name') : requiredString(c,'name');
         const candidate = exact(requiredString(c,'id'),CHANNEL_ID);
         const archived = boolean(c,'is_archived');
         if (eligible(c,includePrivate,includeDms) && !archived && name === parsed.name) matches.push(candidate);

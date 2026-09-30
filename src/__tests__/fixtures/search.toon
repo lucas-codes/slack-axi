@@ -1,0 +1,6 @@
+matches[1]{ts,thread_ts,user,bot_id,text,reply_count,channel_id,channel_name,permalink}:
+  "123.000001",-,U123,-,"hello\n\t<@U123>",-,C123,general,"https://example.slack.com/archives/C123/p123000001"
+page: 1
+pages: 1
+filtered: 0
+truncation[0]:

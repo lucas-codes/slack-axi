@@ -2,10 +2,10 @@ export const HELP = `slack-axi — owned read-only Slack CLI
 
 Usage:
   slack-axi [status] [--json]
-  slack-axi channel list [--limit N] [--cursor CURSOR] [--include-private] [--json]
-  slack-axi channel history <id|name> [--limit N] [--cursor CURSOR] [--include-private] [--json]
-  slack-axi thread replies <id|name> <ts> [--limit N] [--cursor CURSOR] [--include-private] [--json]
-  slack-axi search <query> [--limit N] [--page N] [--include-private] [--json]
+  slack-axi channel list [--limit N] [--cursor CURSOR] [--include-private] [--include-dms] [--json]
+  slack-axi channel history <id|name> [--limit N] [--cursor CURSOR] [--include-private] [--include-dms] [--json]
+  slack-axi thread replies <id|name> <ts> [--limit N] [--cursor CURSOR] [--include-private] [--include-dms] [--json]
+  slack-axi search <query> [--limit N] [--page N] [--include-private] [--include-dms] [--json]
   slack-axi user <id> [--json]
   --help, -h    Show help (no token needed)
   --version, -v Show version (no token needed)

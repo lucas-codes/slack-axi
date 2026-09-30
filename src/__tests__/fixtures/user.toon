@@ -1,0 +1,10 @@
+user:
+  id: U123
+  name: reader
+  real_name: Reader
+  display_name: R
+  title: Engineer
+  tz: UTC
+  deleted: false
+  is_bot: false
+truncation[0]:

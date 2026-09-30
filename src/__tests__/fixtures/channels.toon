@@ -1,0 +1,4 @@
+channels[1]{id,name,is_private,num_members,topic,purpose}:
+  C123,general,false,-,Topic,""
+next_cursor: -
+truncation[0]:

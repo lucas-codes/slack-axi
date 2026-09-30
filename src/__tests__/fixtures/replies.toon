@@ -1,0 +1,5 @@
+channel_id: C123
+messages[1]{ts,thread_ts,user,bot_id,text,reply_count}:
+  "123.000001","123.000001",U123,-,"hello\n\t<@U123>",0
+next_cursor: -
+truncation[0]:
