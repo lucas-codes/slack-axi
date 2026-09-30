@@ -311,3 +311,7 @@ Reference documentation for all seven methods (not authenticated API probes):
 <https://docs.slack.dev/reference/methods/users.info/>,
 <https://docs.slack.dev/authentication/tokens/>,
 <https://docs.slack.dev/apis/web-api/rate-limits/>.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

@@ -4,9 +4,10 @@
 
 The owned CLI passes offline validation, uses the official runtime TOON encoder,
 and has no npm audit findings, including development dependencies. This is a local
-source delivery, not a published release. Before GitHub publication, resolve the
-historical documentation disclosure below and choose a license. No Slack endpoint
-was contacted, no real credential supplied, and no remote created or push performed.
+source delivery, not a published release. The owner chose MIT licensing and approved
+later public GitHub publication with the existing history as-is, without rewriting
+or squashing. No Slack endpoint was contacted, no real credential supplied, and no
+remote created or push performed.
 
 ## TOON and visible contract changes
 
@@ -141,9 +142,10 @@ exercised offline without dependencies. No lint script exists. `.gitignore:1-3`
 already excludes `node_modules/`, `dist/`, and local semantic-index state; those
 artifacts are untracked. Package stays private/local-only, not an npm release.
 
-**License question:** README specifies no license and root has no LICENSE. No
-license was invented or copied from the unrelated third-party project. Which
-license should the owner choose before public distribution?
+**License decided:** the owner chose MIT for later public distribution. Root
+`LICENSE` contains the standard MIT text with `Copyright (c) 2026 Lucas Lim`;
+`package.json` declares `"license": "MIT"` and retains `"private": true`.
+README links to the license.
 
 Scanned all reachable history using `git rev-list --all` and
 `git rev-list --objects --all`, reading every unique blob with `git cat-file blob`
@@ -156,17 +158,18 @@ assignment matches were synthetic test tokens. Author names/emails remain in Git
 metadata; they are attribution, not a claim of anonymized history. This heuristic
 scan does not prove absence of every possible secret encoding.
 
-**Publication gate still open:** an internal documentation CLI name appears in
+**History decision:** the owner approved publishing the existing history as-is,
+with no rewriting or squashing, accepting the internal documentation CLI name in
 historical README blobs. Exact source locations:
 
 - `6aa46032c2fec221faece782086fd6d03e6036bd:README.md:273,275`
 - `b7626b72ee07c6b6dee8454721183b62959701a3:README.md:237`
 
-Current README is cleaned without repeating the name in this report. A normal
-commit cannot remove old blobs from history. Rewriting shared history or publishing
-a sanitized initial snapshot is a repository-owner decision; neither was performed.
-Do not publish the full existing history while the no-internal-names condition is
-required. Resolve this separately before creating a remote or pushing.
+Current README is cleaned without repeating the name in this report. Historical
+blobs remain unchanged under the owner's decision; the scan finding is retained
+as evidence, not treated as absent. The owner accepted this exception to the
+original no-internal-names publication condition. No history rewrite or squash was
+performed. Creating a remote and public GitHub publication remain later work.
 
 ## Validation evidence
 
@@ -186,5 +189,6 @@ Offline bundled/symlink launcher -> 9 fixtures x 2 formats passed with node_modu
 ```
 
 No lint command is configured. Live Slack scope/method compatibility, minimum-Node
-execution, token lifecycle, licensing and eventual GitHub publication remain owner
-checks/decisions; they are not asserted as tested here.
+execution and token lifecycle remain owner checks; they are not asserted as tested
+here. Licensing and history publication are decided as documented above; eventual
+public GitHub publication remains later work.
