@@ -14,10 +14,10 @@
     "README.md"
   ],
   "engines": {
-    "node": ">=22.18.0"
+    "node": "v26.13.0"
   },
   "volta": {
-    "node": "24.21.0"
+    "node": "24.22.2"
   },
   "scripts": {
     "build": "bun build src/index.ts --target=node --outdir=dist && chmod +x bin/slack-axi",
@@ -26,10 +26,10 @@
     "prepublishOnly": "npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
-    "@toon-format/toon": "4.1.1"
+    "@toon-format/toon": "4.4.0"
   },
   "devDependencies": {
-    "@types/node": "24.13.5",
+    "@types/node": "24.19.2",
     "typescript": "5.9.3"
   },
   "license": "MIT"
