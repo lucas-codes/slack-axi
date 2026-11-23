@@ -14,10 +14,10 @@
     "README.md"
   ],
   "engines": {
-    "node": "v26.13.0"
+    "node": "26.13.1"
   },
   "volta": {
-    "node": "24.22.2"
+    "node": "24.22.3"
   },
   "scripts": {
     "build": "bun build src/index.ts --target=node --outdir=dist && chmod +x bin/slack-axi",
